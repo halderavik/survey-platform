@@ -1,7 +1,7 @@
 {
-  "/login/page": "app/login/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
   "/survey-builder/page": "app/survey-builder/page.js",
-  "/dashboard/surveys/page": "app/dashboard/surveys/page.js",
-  "/survey-builder/[id]/page": "app/survey-builder/[id]/page.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/login/page": "app/login/page.js",
+  "/survey-builder/[id]/page": "app/survey-builder/[id]/page.js",
+  "/dashboard/surveys/page": "app/dashboard/surveys/page.js"
 }
