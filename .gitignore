@@ -1,5 +1,6 @@
 # Dependencies
-/node_modules
+node_modules/
+**/node_modules/
 /.pnp
 .pnp.js
 
@@ -9,13 +10,22 @@
 # Next.js
 /.next/
 /out/
+/build
+.next/
+next-env.d.ts
 
 # Production
 /build
+/dist
 
 # Misc
 .DS_Store
 *.pem
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Debug
 npm-debug.log*
@@ -30,8 +40,39 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
-next-env.d.ts
 
 # IDE
+.idea/
 .vscode/
-.idea/ 
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+
+# Cache
+.cache/
+.npm/
+.eslintcache
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+tmp/
+temp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+client/.next/
+server/dist/
+client/dist/ 

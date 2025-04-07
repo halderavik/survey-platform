@@ -22,7 +22,8 @@ const questionSchema = new mongoose.Schema({
       'matrix',
       'slider',
       'date',
-      'file_upload'
+      'file_upload',
+      'conjoint'
     ]
   },
   title: {

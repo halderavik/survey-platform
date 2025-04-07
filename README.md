@@ -60,6 +60,7 @@ surveytool/
     - Slider
     - Date
     - File Upload
+    - Conjoint Analysis
   - Question properties management
   - Draft saving functionality
   - Step-by-step preview mode
@@ -78,13 +79,20 @@ surveytool/
   - Efficient data validation
   - Type normalization
 
+- Conjoint Analysis
+  - File upload for conjoint data
+  - Custom conjoint survey interface
+  - Profile selection and choice tasks
+  - Response collection and storage
+  - Progress tracking
+
 ### Upcoming Features
 - User authentication and authorization
 - Advanced survey logic
 - Response collection and analytics
 - Template system
 - Data export capabilities
-- MaxDiff and Conjoint analysis modules
+- MaxDiff analysis module
 
 ## Tech Stack
 
