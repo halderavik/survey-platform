@@ -28,6 +28,10 @@ const responseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  respondentId: {
+    type: String,
+    description: 'ID for advanced modules like Conjoint and MaxDiff'
+  },
   answers: [answerSchema],
   status: {
     type: String,
@@ -58,6 +62,7 @@ const responseSchema = new mongoose.Schema({
 
 // Indexes
 responseSchema.index({ survey: 1, respondent: 1 });
+responseSchema.index({ survey: 1, respondentId: 1 });
 responseSchema.index({ 'metadata.ipAddress': 1 });
 responseSchema.index({ status: 1 });
 

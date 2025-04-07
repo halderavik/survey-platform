@@ -7,7 +7,7 @@ const responseController = {
    */
   submitResponse: async (req, res) => {
     try {
-      const { survey: surveyId, answers, isAnonymous } = req.body;
+      const { surveyId, respondentId, answers, isAnonymous } = req.body;
 
       // Check if survey exists
       const survey = await Survey.findById(surveyId);
@@ -15,27 +15,30 @@ const responseController = {
         return res.status(404).json({ message: 'Survey not found' });
       }
 
-      // Create response
+      // Create response object
       const response = new Response({
         survey: surveyId,
-        respondent: req.user ? req.user.id : undefined,
-        isAnonymous: isAnonymous || false,
+        respondent: isAnonymous ? null : req.user._id,
+        respondentId: respondentId || 'default',
         answers,
+        status: 'completed',
+        completedAt: new Date(),
         metadata: {
           ipAddress: req.ip,
-          userAgent: req.get('user-agent'),
-          startTime: new Date(),
-          endTime: new Date(),
-          completionTime: 0,
-          deviceType: req.get('user-agent').includes('Mobile') ? 'mobile' : 'desktop',
-          browser: req.get('user-agent'),
-          operatingSystem: req.get('user-agent')
-        },
-        status: 'completed'
+          userAgent: req.headers['user-agent'],
+          deviceType: req.headers['sec-ch-ua-platform'] || 'unknown',
+          browser: req.headers['sec-ch-ua'] || 'unknown',
+          os: req.headers['sec-ch-ua-platform'] || 'unknown'
+        }
       });
 
+      // Save response
       await response.save();
-      res.status(201).json(response);
+
+      res.status(201).json({
+        message: 'Response submitted successfully',
+        responseId: response._id
+      });
     } catch (error) {
       console.error('Error submitting response:', error);
       res.status(500).json({ message: 'Error submitting response' });

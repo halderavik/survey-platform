@@ -27,17 +27,25 @@ export default function SurveyBuilderPage() {
       return;
     }
 
-    // Validate survey ID format (24 character hex string)
-    if (surveyId && !/^[0-9a-fA-F]{24}$/.test(surveyId)) {
+    // Only validate that the ID exists and is not empty
+    if (surveyId && surveyId.trim() === '') {
       setError('Invalid survey ID');
       router.push('/dashboard');
     }
   }, [loading, user, surveyId, router]);
 
-  if (loading || !surveyId) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    );
+  }
+
+  if (!surveyId) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-gray-500">No survey ID provided</div>
       </div>
     );
   }

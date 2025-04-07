@@ -101,7 +101,7 @@ export const RecentSurveys: React.FC = () => {
             ) : (
               <div className="space-y-4">
                 {filteredSurveys.map((survey) => (
-                  <Link key={survey.id} href={`/dashboard/surveys/${survey.id}`}>
+                  <Link key={survey.id} href={`/survey-builder/${survey.id}`}>
                     <div className="group rounded-lg border p-4 hover:bg-gray-50">
                       <div className="flex items-start justify-between">
                         <div className="space-y-1">

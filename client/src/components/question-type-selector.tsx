@@ -35,13 +35,13 @@ export function QuestionTypeSelector({ onSelect, onCancel }: QuestionTypeSelecto
       icon: "check_box"
     },
     {
-      type: "text",
-      label: "Text",
+      type: "short_text",
+      label: "Short Text",
       description: "Let respondents enter a short text response",
       icon: "short_text"
     },
     {
-      type: "textarea",
+      type: "long_text",
       label: "Long Text",
       description: "Let respondents enter a long text response",
       icon: "notes"
@@ -51,6 +51,36 @@ export function QuestionTypeSelector({ onSelect, onCancel }: QuestionTypeSelecto
       label: "Rating",
       description: "Let respondents rate on a numeric scale",
       icon: "star"
+    },
+    {
+      type: "dropdown",
+      label: "Dropdown",
+      description: "Let respondents select from a dropdown menu",
+      icon: "arrow_drop_down"
+    },
+    {
+      type: "matrix",
+      label: "Matrix",
+      description: "Create a matrix of questions",
+      icon: "grid_on"
+    },
+    {
+      type: "slider",
+      label: "Slider",
+      description: "Let respondents select a value using a slider",
+      icon: "tune"
+    },
+    {
+      type: "date",
+      label: "Date",
+      description: "Let respondents select a date",
+      icon: "calendar_today"
+    },
+    {
+      type: "file_upload",
+      label: "File Upload",
+      description: "Let respondents upload files",
+      icon: "upload_file"
     }
   ];
 

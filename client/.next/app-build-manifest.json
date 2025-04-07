@@ -21,25 +21,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/signup/page.js"
     ],
-    "/survey-builder/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/survey-builder/page.js"
-    ],
-    "/dashboard/surveys/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/surveys/page.js"
+      "static/chunks/app/login/page.js"
     ],
     "/survey-builder/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/survey-builder/[id]/page.js"
     ],
-    "/login/page": [
+    "/survey-builder/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
+      "static/chunks/app/survey-builder/page.js"
+    ],
+    "/dashboard/surveys/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/surveys/[id]/page.js"
+    ],
+    "/dashboard/surveys/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/surveys/page.js"
     ]
   }
 }

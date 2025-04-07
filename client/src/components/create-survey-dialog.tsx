@@ -238,7 +238,14 @@ export function CreateSurveyDialog({ open, onOpenChange, onSurveyCreated }: Crea
         body: JSON.stringify({
           title: title.trim(),
           description: description.trim() || undefined,
-          questions: initialQuestions,
+          questions: [
+            {
+              type: "long_text",
+              title: "What are your thoughts?",
+              description: "Please share your feedback in detail",
+              required: true
+            }
+          ],
           created: now,
           lastUpdated: now,
           status: 'draft',

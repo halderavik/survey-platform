@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { DashboardShell } from '@/components/dashboard-shell';
 import { DashboardHeader } from '@/components/dashboard-header';
 import { SurveyResponseChart } from '@/components/survey-response-chart';
@@ -29,6 +29,7 @@ interface Survey {
 
 export default function SurveyDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const [survey, setSurvey] = useState<Survey | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -92,7 +93,10 @@ export default function SurveyDetailPage() {
               <Share2 className="mr-2 h-4 w-4" />
               Share
             </Button>
-            <Button variant="outline">
+            <Button 
+              variant="outline"
+              onClick={() => router.push(`/dashboard/surveys/${survey.id}/edit`)}
+            >
               <Edit2 className="mr-2 h-4 w-4" />
               Edit
             </Button>

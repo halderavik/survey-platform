@@ -43,10 +43,23 @@ const surveyController = {
       const { status, isTemplate } = req.query;
       const query = { creator: req.user.id };
 
-      if (status) query.status = status;
-      if (isTemplate !== undefined) query.isTemplate = isTemplate === 'true';
+      if (status) {
+        // Handle multiple status values
+        if (Array.isArray(status)) {
+          query.status = { $in: status };
+        } else {
+          query.status = status;
+        }
+      }
+      
+      if (isTemplate !== undefined) {
+        query.isTemplate = isTemplate === 'true';
+      }
 
-      const surveys = await Survey.find(query).sort('-createdAt');
+      const surveys = await Survey.find(query)
+        .sort('-lastUpdated')
+        .select('title description status questions lastUpdated created responseCount');
+      
       res.json(surveys);
     } catch (error) {
       console.error('Get surveys error:', error);
@@ -89,7 +102,7 @@ const surveyController = {
    */
   updateSurvey: async (req, res) => {
     try {
-      const { title, description, questions, settings, tags } = req.body;
+      const { title, description, questions, settings, tags, status } = req.body;
 
       const survey = await Survey.findById(req.params.id);
 
@@ -102,12 +115,22 @@ const surveyController = {
         return res.status(403).json({ message: 'Not authorized to update this survey' });
       }
 
-      // Update survey
+      // Update survey fields if provided
       if (title) survey.title = title;
       if (description !== undefined) survey.description = description;
       if (questions) survey.questions = questions;
       if (settings) survey.settings = settings;
       if (tags) survey.tags = tags;
+      if (status) {
+        // Validate status
+        if (!['draft', 'testing', 'active', 'completed'].includes(status)) {
+          return res.status(400).json({ message: 'Invalid status value' });
+        }
+        survey.status = status;
+      }
+
+      // Update lastUpdated timestamp
+      survey.lastUpdated = new Date();
 
       await survey.save();
       res.json(survey);

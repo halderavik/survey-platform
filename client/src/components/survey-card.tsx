@@ -1,7 +1,9 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { BarChart3, Copy, Edit, Link, MoreHorizontal, Trash } from "lucide-react"
+import { BarChart3, Copy, Edit, Link as LinkIcon, MoreHorizontal, Trash } from "lucide-react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -38,6 +40,8 @@ const formatDate = (dateString: string) => {
 }
 
 export function SurveyCard({ survey }: SurveyCardProps) {
+  const router = useRouter();
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
@@ -51,8 +55,12 @@ export function SurveyCard({ survey }: SurveyCardProps) {
     }
   }
 
+  const handleEdit = () => {
+    router.push(`/survey-builder/${survey.id}`);
+  };
+
   return (
-    <Card>
+    <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={handleEdit}>
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">
           <div>
@@ -61,26 +69,29 @@ export function SurveyCard({ survey }: SurveyCardProps) {
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button variant="ghost" className="h-8 w-8 p-0" onClick={(e) => e.stopPropagation()}>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleEdit}>
                 <Edit className="mr-2 h-4 w-4" />
                 <span>Edit</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
                 <Copy className="mr-2 h-4 w-4" />
                 <span>Duplicate</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link className="mr-2 h-4 w-4" />
+              <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
+                <LinkIcon className="mr-2 h-4 w-4" />
                 <span>Share Link</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive focus:text-destructive">
+              <DropdownMenuItem 
+                className="text-destructive focus:text-destructive"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <Trash className="mr-2 h-4 w-4" />
                 <span>Delete</span>
               </DropdownMenuItem>

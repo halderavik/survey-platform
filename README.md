@@ -9,8 +9,12 @@ surveytool/
 ├── client/                 # Frontend (Next.js)
 │   ├── src/
 │   │   ├── app/           # Next.js app directory
-│   │   │   ├── survey-builder/    # Survey builder pages
-│   │   │   │   └── [id]/         # Dynamic survey builder route
+│   │   │   ├── dashboard/ # Dashboard pages
+│   │   │   │   └── surveys/ # Survey management
+│   │   │   │       └── [id]/ # Dynamic survey routes
+│   │   │   │           ├── edit/ # Survey editor
+│   │   │   │           └── analytics/ # Survey analytics
+│   │   │   └── survey/   # Survey taking pages
 │   │   ├── components/    # React components
 │   │   │   ├── ui/       # Reusable UI components
 │   │   │   └── survey/   # Survey-specific components
@@ -48,7 +52,7 @@ surveytool/
 ### Implemented Features
 - Survey Builder
   - Modern, intuitive interface
-  - Real-time survey preview
+  - Real-time survey preview with step-by-step navigation
   - Multiple question types:
     - Multiple Choice
     - Checkbox
@@ -63,7 +67,7 @@ surveytool/
     - Conjoint Analysis
   - Question properties management
   - Draft saving functionality
-  - Step-by-step preview mode
+  - Step-by-step preview mode with progress tracking
   - Mobile-responsive design
 
 - Survey Management
@@ -72,6 +76,8 @@ surveytool/
   - Preview surveys before publishing
   - Question validation
   - Required field handling
+  - Survey status tracking (draft, testing, live)
+  - Analytics dashboard for response tracking
 
 - Database Integration
   - MongoDB with Mongoose ODM
@@ -85,14 +91,20 @@ surveytool/
   - Profile selection and choice tasks
   - Response collection and storage
   - Progress tracking
+  - Multiple respondent support
+
+- Analytics
+  - Response summary dashboard
+  - Response count metrics
+  - CSV data export functionality
+  - Response filtering capabilities
 
 ### Upcoming Features
 - User authentication and authorization
-- Advanced survey logic
-- Response collection and analytics
+- Advanced survey logic (branching, skip logic)
 - Template system
-- Data export capabilities
 - MaxDiff analysis module
+- Advanced analytics visualizations
 
 ## Tech Stack
 
